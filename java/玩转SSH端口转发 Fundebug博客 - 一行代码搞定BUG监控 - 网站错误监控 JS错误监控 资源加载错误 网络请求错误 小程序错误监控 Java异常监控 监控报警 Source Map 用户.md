@@ -1,5 +1,4 @@
-# 玩转SSH端口转发 | Fundebug博客 - 一行代码搞定BUG监控 - 网站错误监控|JS错误监控|资源加载错误|网络请求错误|小程序错误监控|Java异常监控|监控报警|Source Map|用户行为|可视化重现
-SSH 有三种端口转发模式，**本地端口转发 (Local Port Forwarding)**，**远程端口转发 (Remote Port Forwarding)**以及**动态端口转发 (Dynamic Port Forwarding)**。对于本地 / 远程端口转发，两者的方向恰好相反。**动态端口转发**则可以用于科学上网。
+# 玩转SSH端口转发
 
 SSH 端口转发也被称作 SSH 隧道 ([SSH Tunnel](http://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html))，因为它们都是通过 SSH 登陆之后，在**SSH 客户端**与**SSH 服务端**之间建立了一个隧道，从而进行通信。SSH 隧道是非常安全的，因为 SSH 是通过加密传输数据的 (SSH 全称为 Secure Shell)。
 
@@ -156,8 +155,3 @@ Hello Fundebug
 
 ### 关于 Fundebug
 
-[Fundebug](https://www.fundebug.com/)专注于 JavaScript、微信小程序、微信小游戏、支付宝小程序、React Native、Node.js 和 Java 线上应用实时 BUG 监控。 自从 2016 年双十一正式上线，Fundebug 累计处理了 50 亿 + 错误事件，付费客户有阳光保险、达令家、核桃编程、荔枝 FM、微脉等众多品牌企业。欢迎大家[免费试用](https://www.fundebug.com/team/create)！
-
-[![](https://static.fundebug.cn/wechat_slogan.png)
-](https://static.fundebug.cn/wechat_slogan.png) 
- [https://blog.fundebug.com/2017/04/24/ssh-port-forwarding/](https://blog.fundebug.com/2017/04/24/ssh-port-forwarding/)
