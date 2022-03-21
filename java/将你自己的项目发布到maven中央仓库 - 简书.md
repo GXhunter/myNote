@@ -92,12 +92,12 @@ Windows 系统，可以下载 Gpg4win 软件来生成密钥对。下载地址：
 * * *
 
 > 将公钥发布到 PGP 密钥服务器  
-> gpg --keyserver [hkp://pool.sks-keyservers.net](hkp://pool.sks-keyservers.net) --send-keys 你的公钥指纹
+> gpg --keyserver [keyserver.ubuntu.com](keyserver.ubuntu.com) --send-keys 你的公钥指纹
 
 * * *
 
 > 查询公钥是否发布成功  
-> gpg --keyserver [hkp://pool.sks-keyservers.net](hkp://pool.sks-keyservers.net) --recv-keys 你的公钥指纹
+> gpg --keyserver [keyserver.ubuntu.com](keyserver.ubuntu.com) --recv-keys 你的公钥指纹
 
 #### 修改 Maven 配制
 
@@ -119,100 +119,103 @@ Windows 系统，可以下载 Gpg4win 软件来生成密钥对。下载地址：
 
 > pom.xml
 
-    <project>
-        ...
-        <name>dexcoder-assistant</name>
-        <description>dexcoder-assistant is a rapid development kit.</description>
-        <url>http://www.dexcoder.com/</url>
-        <licenses>
-            <license>
-                <name>The Apache Software License, Version 2.0</naurl
-                <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            </license>
-        </licenses>
-        <developers>
-            <developer>
-                <name>selfly</name>
-                <email>selfly@foxmail.com</email>
-            </developer>
-        </developers>
-        <scm>
-            <connection>scm:git:git@github.com:selfly/dexcoder-assistant.git</connection>
-            <developerConnection>scm:git:git@github.com:selfly/dexcoder-assistant.git</developerConnection>
-            <url>git@github.com:selfly/dexcoder-assistant.git</url>
-        </scm>
-        
-        <profiles>
-            <profile>
-                <id>release</id>
-                <build>
-                    <plugins>
-                        <!-- Source -->
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-source-plugin</artifactId>
-                            <version>2.2.1</version>
-                            <executions>
-                                <execution>
-                                    <phase>package</phase>
-                                    <goals>
-                                        <goal>jar-no-fork</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-                        <!-- Javadoc -->
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-javadoc-plugin</artifactId>
-                            <version>2.9.1</version>
-                            <configuration>
-                                <show>private</show>
-                                <nohelp>true</nohelp>
-                                        <charset>UTF-8</charset>
-                    <encoding>UTF-8</encoding>
-                    <docencoding>UTF-8</docencoding>
-                    <additionalparam>-Xdoclint:none</additionalparam>  <!-- TODO 临时解决不规范的javadoc生成报错,后面要规范化后把这行去掉 -->
-                </configuration>
-                            <executions>
-                                <execution>
-                                    <phase>package</phase>
-                                    <goals>
-                                        <goal>jar</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-                        <!-- GPG -->
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-gpg-plugin</artifactId>
-                            <version>1.5</version>
-                            <executions>
-                                <execution>
-                                    <phase>verify</phase>
-                                    <goals>
-                                        <goal>sign</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-                    </plugins>
-                </build>
-                <distributionManagement>
-                    <snapshotRepository>
-                        <id>oss</id>
-                        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                    </snapshotRepository>
-                    <repository>
-                        <id>oss</id>
-                        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                    </repository>
-                </distributionManagement>
-            </profile>
-        </profiles>
-        ...
-    </project> 
+```xml
+<project>
+    // 必须与sonatype提交的issue的groupId相同
+    <groupId>io.github.gxhunter</groupId>
+    <name>dexcoder-assistant</name>
+    <description>dexcoder-assistant is a rapid development kit.</description>
+    <url>http://www.dexcoder.com/</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</naurl
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>selfly</name>
+            <email>selfly@foxmail.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:selfly/dexcoder-assistant.git</connection>
+        <developerConnection>scm:git:git@github.com:selfly/dexcoder-assistant.git</developerConnection>
+        <url>git@github.com:selfly/dexcoder-assistant.git</url>
+    </scm>
+    
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <configuration>
+                            <show>private</show>
+                            <nohelp>true</nohelp>
+                                    <charset>UTF-8</charset>
+                <encoding>UTF-8</encoding>
+                <docencoding>UTF-8</docencoding>
+                <additionalparam>-Xdoclint:none</additionalparam>  <!-- TODO 临时解决不规范的javadoc生成报错,后面要规范化后把这行去掉 -->
+            </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- GPG -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>oss</id>
+                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>oss</id>
+                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+    ...
+</project> 
+```
 
 > pom.xml 中必须包括：name、description、url、licenses、developers、scm 等基本信息，使用了 Maven 的 profile 功能，只有在 release 的时候才创建源码包、文档包、使用 GPG 进行数字签名。  
 > 此外，snapshotRepository 与 repository 中的 id 一定要与 setting.xml 中 server 的 id 保持一致。  
@@ -253,7 +256,7 @@ maven 配制修改完成后, 就可以提交项目了, 使用命令:
 
 #### 在 OSS 中发布
 
-> 使用 Jira 账号登录 [https://oss.sonatype.org](https://oss.sonatype.org/)，在 Staging Repositories 中查看刚才已上传的构件。  
+> 使用 Jira 账号登录 [https://s01.oss.sonatype.org](https://s01.oss.sonatype.org/)，在 Staging Repositories 中查看刚才已上传的构件。  
 > 一般发布的构件不多, 可以直接滚动条拉到最后就能看到自己的构件, 或者更改时间排序, 也可进行模糊查询定位到自己的构件  
 > 找到自己的构建后选中, 并点击上方的 【Close】按钮关闭构建, 这个过程有点慢, 稍等几分钟  
 > 刷新页面, 发现关闭成功后, 再次选中自己的构建, 点击上方的【Release】发布构建.
@@ -268,49 +271,5 @@ maven 配制修改完成后, 就可以提交项目了, 使用命令:
 > 如果要发布新的项目, 在使用相同 GroupId 的情况下, 与上面的过程一样. 只有使用不同的 GroupId 的时候, 才会需要再去提交 Issue 申请.  
 > 当然如果你没有换电脑的话 GPG 的过程只需要一次就行
 
-#### 结束
 
-到此发布过程就结束了. 本文参考了以下文章, 特别感谢这些文章的作者:  
-[Maven 发布自己的项目到 Maven 中央仓库](https://www.cnblogs.com/binarylei/p/8628245.html)  
-[\[干货\]-- 发布项目到 maven 中央仓库](https://www.cnblogs.com/songjialin2016/p/8624019.html)  
-[将项目发布到 Maven 中央库](https://blog.csdn.net/lanmo555/article/details/52456751)
-
-更多精彩内容，就在简书 APP
-
-"小礼物走一走，来简书关注我"
-
-还没有人赞赏，支持一下
-
-[![](https://github.com/GXhunter/myNote/blob/main/2022-3-21%2010-39-25/c5141ba6-705f-4c26-81c9-a2f0bb66cc9e.webp?raw=true)
-](https://www.jianshu.com/u/bf95c779e609)
-
-总资产 62 共写了 3.8W 字获得 103 个赞共 51 个粉丝
-
-### 被以下专题收入，发现更多相似内容
-
-### 推荐阅读[更多精彩内容](https://www.jianshu.com/)
-
--   最近尝试发布自己的项目到 Maven 中央仓库，发现网上的教程虽然不少，但多多少少都有一些问题，其中最主要的问题是...
-
-    [![](https://github.com/GXhunter/myNote/blob/main/2022-3-21%2010-39-25/3132ab83-6bb3-47be-bbe8-06ef73f16f24.webp?raw=true)
-    伊凡的一天](https://www.jianshu.com/u/e6deef6e5882)阅读 8,395 评论 16 赞 5
-
-    [![](https://github.com/GXhunter/myNote/blob/main/2022-3-21%2010-39-25/16f1f39b-28d9-46fe-8c91-548327211b22.webp?raw=true)
-    ](https://www.jianshu.com/p/5f6135e1925f)
--   1. 在 [https://issues.sonatype.org/secure/Signup!default.js..](https://issues.sonatype.org/secure/Signup!default.js..).
-
-
--   |-1 - 更新内容\[6. 从仓库解析依赖的机制（重要）] 1Maven 仓库作用 仓库用来存储所有项目使用到构件，在 ma...
-
-    [![](https://github.com/GXhunter/myNote/blob/main/2022-3-21%2010-39-25/a320c03f-6153-4ae9-8f86-ac483eb48fc4.webp?raw=true)
-    ](https://www.jianshu.com/p/6c5e2b7b9408)
--   光阴似箭 扇子般的银杏叶 铺满一地的金黄 房前一隅的韭菜又开始茂盛 那一棵老槐树还在 那间老屋还在 那夜静时对母亲...
-
-    [![](https://github.com/GXhunter/myNote/blob/main/2022-3-21%2010-39-25/85eda7f9-fb3d-42da-a66f-9d78f47cb5e0.webp?raw=true)
-    ](https://www.jianshu.com/p/c4f8b9d5c26f)
--   秋天是大自然色调的真实展现。这是一个胸怀博大、充满感情的季节。她没有冬天的冷酷，却有冬天的坦荡；她没有夏天的火爆，...
-       [![](https://github.com/GXhunter/myNote/blob/main/2022-3-21%2010-39-25/fcb33839-fcdb-4539-a19c-0d17b36546b0.jpeg?raw=true)
-       漠河小北](https://www.jianshu.com/u/14e191df025f)阅读 101 评论 0 赞 0
-       [![](https://github.com/GXhunter/myNote/blob/main/2022-3-21%2010-39-25/205d1673-8219-4608-bc17-e3674b40b142.webp?raw=true)
-       ](https://www.jianshu.com/p/e13f144915db) 
-    [https://www.jianshu.com/p/8c3d7fb09bce](https://www.jianshu.com/p/8c3d7fb09bce)
+-   https://www.jianshu.com/p/8c3d7fb09bce)
